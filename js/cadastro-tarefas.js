@@ -1,31 +1,8 @@
-(function () {
-  "use strict";
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll(".needs-validation");
-
-  // Loop over them and prevent submission
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    form.addEventListener(
-      "submit",
-      function (event) {
-        if (!form.checkValidity()) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-
-        form.classList.add("was-validated");
-      },
-      false
-    );
-  });
-})();
-
 document.addEventListener("DOMContentLoaded", function () {
   const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
 
   if (usuarioLogado) {
-    document.getElementById("usuario-logado").innerText =
+    document.getElementById("usuarioLogado").innerText =
       "Olá, " + usuarioLogado.username;
     atualizaTabela();
   } else {
@@ -44,11 +21,23 @@ function salvarTarefa(index) {
     JSON.parse(localStorage.getItem(`${usuarioLogado.username}.tarefas`)) || [];
 
   const titulo = document.getElementById("titulo").value;
-  const dataInicio = document.getElementById("data-inicio").value;
-  const horaInicio = document.getElementById("hora-inicio").value;
-  const dataTermino = document.getElementById("data-termino").value;
-  const horaTermino = document.getElementById("hora-termino").value;
+  const dataInicio = document.getElementById("dataInicio").value;
+  const horaInicio = document.getElementById("horaInicio").value;
+  const dataTermino = document.getElementById("dataTermino").value;
+  const horaTermino = document.getElementById("horaTermino").value;
   const descricao = document.getElementById("descricao").value;
+
+  if (
+    !titulo ||
+    !dataInicio ||
+    !horaInicio ||
+    !dataTermino ||
+    !horaTermino ||
+    !descricao
+  ) {
+    alert("Todos os campos são obrigatórios.");
+    return;
+  }
 
   if (index === null || index === undefined) {
     tarefas.push({
@@ -134,7 +123,7 @@ function atualizaTabela() {
   const usuarioLogado = JSON.parse(localStorage.getItem("usuarioLogado"));
   const tarefas =
     JSON.parse(localStorage.getItem(`${usuarioLogado.username}.tarefas`)) || [];
-  const listaTarefas = document.querySelector("#lista-tarefas");
+  const listaTarefas = document.querySelector("#listaTarefas");
 
   listaTarefas.innerHTML = "";
 
@@ -163,7 +152,7 @@ function atualizaTabela() {
 
     const botaoEditar = document.createElement("button");
     botaoEditar.textContent = "Alterar";
-    botaoEditar.id = "btn-editar";
+    botaoEditar.id = "btnEditar";
     botaoEditar.className = "btn btn-warning btn";
     botaoEditar.setAttribute("data-index", index);
     botaoEditar.onclick = function () {
@@ -211,14 +200,14 @@ function alterarTarefa(index) {
   } = tarefa;
 
   document.getElementById("titulo").value = titulo;
-  document.getElementById("data-inicio").value = dataInicio;
-  document.getElementById("hora-inicio").value = horaInicio;
-  document.getElementById("data-termino").value = dataTermino;
-  document.getElementById("hora-termino").value = horaTermino;
+  document.getElementById("dataInicio").value = dataInicio;
+  document.getElementById("horaInicio").value = horaInicio;
+  document.getElementById("dataTermino").value = dataTermino;
+  document.getElementById("horaTermino").value = horaTermino;
   document.getElementById("descricao").value = descricao;
 
   document.getElementById("btnCriar").style.display = "none";
-  document.getElementById("botoes-edicao").style.display = "block";
+  document.getElementById("botoesEdicao").style.display = "block";
 
   const btnAlterar = document.querySelector("#btnAlterar");
   btnAlterar.onclick = () => {
@@ -247,7 +236,7 @@ function alterarTarefa(index) {
 }
 
 function showModal(titulo, descricao) {
-  const modal = document.querySelector("#modal-tarefas");
+  const modal = document.querySelector("#modalTarefas");
   const tituloModal = document.querySelector(".modal-title");
   const descricaoModal = document.querySelector(".modal-body p");
 
@@ -285,5 +274,5 @@ function limpaFormulario() {
   });
 
   document.getElementById("btnCriar").removeAttribute("style");
-  document.getElementById("botoes-edicao").style.display = "none";
+  document.getElementById("botoesEdicao").style.display = "none";
 }

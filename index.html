@@ -15,10 +15,10 @@
   <body class="d-flex align-items-center justify-content-center vh-100">
     <main class="container container-table bd-gutter">
       <div class="row vertical-center-row">
-        <div class="col">
+        <div class="col-lg-6">
           <img src="assets/img-login.svg" alt="Imagem" class="img-fluid" />
         </div>
-        <div class="col">
+        <div class="col-lg-6">
           <div class="login bg-body-tertiary p-4 rounded-3">
             <h3 class="h3">Acesse sua conta:</h3>
             <!-- LOGIN -->
@@ -41,7 +41,10 @@
                   required
                 />
               </div>
-              <div id="erro-login" class="erro-login mb-3"></div>
+              <div
+                id="erro-login"
+                class="erro-login mb-3 text-danger fw-lighter"
+              ></div>
               <button type="button" class="btn btn-primary" onclick="login()">
                 Entrar
               </button>

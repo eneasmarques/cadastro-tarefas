@@ -16,9 +16,9 @@
   </head>
   <body>
     <!-- NAV -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-black">
+    <nav class="navbar navbar-expand fixed-top bg-black">
       <div class="container-fluid">
-        <p class="navbar-brand me-auto" id="usuario-logado"></p>
+        <p class="navbar-brand me-auto" id="usuarioLogado"></p>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <button class="btn btn-outline-danger ms-auto" onclick="sair()">
             Sair
@@ -29,10 +29,10 @@
 
     <main class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-6">
+        <div class="col-lg-6">
           <h1 class="bd-title mt-5 text-center">Gerenciador de Tarefas</h1>
           <!-- FORMULÁRIO DE TAREFAS -->
-          <form class="row g-3 needs-validation novalidate mt-4" id="taskForm">
+          <form class="row g-3 mt-4" id="taskForm">
             <div class="row">
               <div class="form-floating col-12 mb-3">
                 <input
@@ -48,11 +48,10 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="data-inicio"
+                  id="dataInicio"
                   placeholder="Data de início"
                   onfocus="(this.type='date')"
                   onblur="if(!this.value) this.type='text'"
-                  required
                 />
                 <label for="data-inicio" class="mx-2">Data de Início</label>
               </div>
@@ -61,11 +60,10 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="hora-inicio"
+                  id="horaInicio"
                   placeholder="Hora de início"
                   onfocus="(this.type='time')"
                   onblur="if(!this.value) this.type='text'"
-                  required
                 />
                 <label for="hora-inicio" class="mx-2">Hora de Início</label>
               </div>
@@ -73,11 +71,10 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="data-termino"
+                  id="dataTermino"
                   placeholder="Data Término"
                   onfocus="(this.type='date')"
                   onblur="if(!this.value) this.type='text'"
-                  required
                 />
                 <label for="startTime" class="mx-2">Data término</label>
               </div>
@@ -85,11 +82,10 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="hora-termino"
+                  id="horaTermino"
                   placeholder="Hora de início"
                   onfocus="(this.type='time')"
                   onblur="if(!this.value) this.type='text'"
-                  required
                 />
                 <label for="hora-termino" class="mx-2">Hora Término</label>
               </div>
@@ -100,7 +96,6 @@
                   id="descricao"
                   placeholder="Descrição"
                   style="height: 100px"
-                  required
                 ></textarea>
                 <label for="descricao" class="mx-2">Descrição:</label>
               </div>
@@ -114,7 +109,7 @@
                 >
                   Criar
                 </button>
-                <div id="botoes-edicao" style="display: none">
+                <div id="botoesEdicao" style="display: none">
                   <button type="button" id="btnAlterar" class="btn btn-warning">
                     Alterar
                   </button>
@@ -161,7 +156,7 @@
                   <th scope="col">Ação</th>
                 </tr>
               </thead>
-              <tbody id="lista-tarefas"></tbody>
+              <tbody id="listaTarefas"></tbody>
             </table>
           </div>
         </div>
@@ -171,7 +166,7 @@
     <!-- Modal Tarefas -->
     <div
       class="modal fade"
-      id="modal-tarefas"
+      id="modalTarefas"
       tabindex="-1"
       data-bs-backdrop="static"
       data-bs-keyboard="false"
